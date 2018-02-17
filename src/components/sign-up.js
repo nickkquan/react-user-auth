@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { renderInput } from "../helpers";
 
 class SignUp extends Component {
-	renderInput({input, type, placeholder, meta: {touched, error}}) {
-		return (
-			<div className="input-field">
-				<input {...input} type={type ? type : "text"} placeholder={placeholder} />
-				<p className="red-text">{touched && error}</p>
-			</div>
-		);
-	}
-
 	handleSignUp(values) {
 		console.log("Sign up form submitted values: ", values);
 	}
@@ -26,17 +18,17 @@ class SignUp extends Component {
 						<div className="card grey lighten-5">
 							<div className="card-content">
 								<form onSubmit={handleSubmit(this.handleSignUp)}>
-									<Field name="email" placeholder="Enter your email" component={this.renderInput} />
+									<Field name="email" placeholder="Enter your email" component={renderInput} />
 									<Field
 										name="password"
 										placeholder="Choose a Password"
-										component={this.renderInput}
+										component={renderInput}
 										type="password"
 									/>
 									<Field
 										name="confirmPassword"
 										placeholder="Re-enter password"
-										component={this.renderInput}
+										component={renderInput}
 										type="password"
 									/>
 									<div className="right-align">
@@ -71,7 +63,7 @@ function validate(values) {
 }
 
 SignUp = reduxForm({
-	form: "sign-up",
+	form: "sign-up-form",
 	validate: validate
 })(SignUp);
 
