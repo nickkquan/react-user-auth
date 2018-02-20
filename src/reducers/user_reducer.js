@@ -10,6 +10,8 @@ export default function(state = DEFAULT_STATE, action) {
 		case types.SIGN_UP:
 		case types.SIGN_IN:
 			return { auth: true, error: "" };
+		case types.SIGN_OUT:
+			return { auth: false, error: "" };
 		case types.ERROR:
 			return { auth: false, error: action.error };
 		default:
